@@ -1,0 +1,8 @@
+#Pacica 04 de LPP
+#Auores: Francisco J. Alderete González
+#        Nestor Alvarez
+
+puts "¿Qué desea hacer Sumar(1) o Restar(2)?"
+STDOUT.flush
+op=gets.chomp
+puts "Prueba #{op}"
