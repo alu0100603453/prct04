@@ -21,6 +21,14 @@ end
 
 #FUNCION SUMA
 def op_suma(matrix1,matrix2,orden)
+	result=[]
+	i=0
+	while i < orden*2
+		result[i]=matrix1[i].to_i + matrix2[i].to_i
+		i=i+1
+	end
+	return result
+	
 end
 #___________
 
@@ -84,7 +92,9 @@ end
 #_____
 
 if op=="suma"
-	op_suma(matrix1,matrix2,orden.to_i)
+	resu=op_suma(matrix1,matrix2,orden.to_i)
+	puts "La matriz resultante es: "
+	mostrar(resu,orden.to_i)
 elsif op=="miltiplicacion"
 	op_multi(matrix1,matrix2,orden.to_i)
 end
