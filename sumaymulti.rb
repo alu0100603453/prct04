@@ -39,7 +39,29 @@ end
 #___________
 
 #FUNCION MULTIPLICACION
-def op_multi(maxtrix1,matrix2,orde)
+def op_multi(a,b)
+	fil = 0
+	col = 0
+	x_col = 0
+	while(fil < a.length)
+		x_col = 0
+		while(x_col < b.length)
+			aux = 0
+			col = 0
+			while(col < a.length)
+				aux = aux + (a[fil][col] * b[col][x_col])
+				col += 1
+			end
+			if(aux < 10)
+				print "#{aux}  "
+			else
+				print "#{aux} "
+			end
+			x_col += 1
+		end
+		puts
+		fil += 1
+	end
 end
 #_____________________
 
