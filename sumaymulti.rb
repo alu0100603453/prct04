@@ -1,6 +1,6 @@
-#Pacica 04 de LPP
+#Practica 04 de LPP
 #Autores: Francisco J. Alderete González
-#        Nestor Alvarez Diaz
+#        Néstor Álvarez Díaz
 
 #FUNCION LLENAR MATRIZ RANDOM
 def rand_matriz(d)
