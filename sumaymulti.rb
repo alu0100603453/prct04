@@ -8,7 +8,7 @@ def rand_matriz(d)
 	cont = 0
 	while(cont < d)
 		p_rand = Random.new()
-		m[cont] = Array.new(d){|j| p_rand.rand(4)}
+		m[cont] = Array.new(d){|j| p_rand.rand(9)}
 		cont = cont + 1
 	end
 	m
@@ -18,20 +18,24 @@ end
 def mostrar(m)
 	c_fil = 0
 	while(c_fil < m.length)
-		print "#{m[c_fil]} "
-		puts
+		puts "#{m[c_fil]} "
 		c_fil = c_fil + 1
 	end
 	puts
 end
 
 #FUNCION SUMA
-def op_suma(matrix1,matrix2,orden)
-	result=[]
-	i=0
-	while i < orden*2
-		result[i]=matrix1[i].to_i + matrix2[i].to_i
-		i=i+1
+def op_suma(a,b)
+	result=Array.new(a.length){Array.new(b.length)}
+	i = 0
+	j = 0
+	while i < a.length
+		j = 0
+		while j < b.length
+			result[i][j] = a[i][j] + b[i][j]
+			j += 1
+		end
+		i += 1
 	end
 	return result
 	
@@ -40,6 +44,7 @@ end
 
 #FUNCION MULTIPLICACION
 def op_multi(a,b)
+	result=Array.new(a.length){Array.new(b.length){|i| 0}}
 	fil = 0
 	col = 0
 	x_col = 0
@@ -49,26 +54,21 @@ def op_multi(a,b)
 			aux = 0
 			col = 0
 			while(col < a.length)
-				aux = aux + (a[fil][col] * b[col][x_col])
+				result[fil][col] += (a[fil][col] * b[col][x_col])
 				col += 1
-			end
-			if(aux < 10)
-				print "#{aux}  "
-			else
-				print "#{aux} "
 			end
 			x_col += 1
 		end
-		puts
 		fil += 1
 	end
+	result
 end
 #_____________________
 
 #_MENU
 intro = true
 while intro == true
-	puts "¿Qué desea hacer Sumar(1) o Restar(2)?"
+	puts "Que desea hacer Sumar(1) o Restar(2)?"
 	STDOUT.flush
 	op=gets.chomp
 	if op == "1"
@@ -87,42 +87,22 @@ end
 puts "Indique el orden de las matrices CUADRADAS"
 STDOUT.flush
 orden=gets.chomp
-puts "Introduzca la 1º matiz cuadrada de orden #{orden} para la #{op}"
-STDOUT.flush
-matrix1 = []
-matrix2 = []
-i=0
-value=0
-while i < orden.to_i
-	j=0
-	while j < orden.to_i
-		puts "Valor [#{i},#{j}]"
-		matrix1[value]=gets.chomp
-		value=value+1
-		j=j+1
-	end
-	i=i+1
-end
-puts "Introduzca la 2º matiz cuadrada de orden #{orden} para la #{op}"
-STDOUT.flush
-i=0
-value=0
-while i < orden.to_i
-	j=0
-	while j < orden.to_i
-                puts "Valor [#{i},#{j}]"
-        	matrix2[value]=gets.chomp
-		value=value+1
-		j=j+1
-	end
-	i=i+1
-end
-#_____
+
+matrix1 = rand_matriz(orden.to_i)
+matrix2 = rand_matriz(orden.to_i)
+
+puts "La matriz A es: "
+mostrar(matrix1)
+
+puts "La matriz B es: "
+mostrar(matrix2)
 
 if op=="suma"
-	resu=op_suma(matrix1,matrix2,orden.to_i)
+	resu=op_suma(matrix1,matrix2)
 	puts "La matriz resultante es: "
-	mostrar(resu,orden.to_i)
-elsif op=="miltiplicacion"
-	op_multi(matrix1,matrix2,orden.to_i)
+	mostrar(resu)
+elsif op=="multiplicacion"
+	resu=op_multi(matrix1,matrix2)
+	puts "La matriz resultante es: "
+	mostrar(resu)
 end
